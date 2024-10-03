@@ -14,10 +14,16 @@ jobs:
 
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Ensure poetry is installed
-        run: sudo apt update && sudo apt install -fy python3-poetry
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.3.2"
 
       - name: Install dependencies
         run: poetry install
