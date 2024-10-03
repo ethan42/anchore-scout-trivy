@@ -1,0 +1,42 @@
+name: Publish Python Package to GitHub Packages
+
+on:
+  push:
+    branches:
+      - main  # Adjust to your main branch
+  release:
+    types:
+      - published
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "::add-path::$(python3 -m site --user-base)/bin"
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Build the package
+        run: poetry build
+
+      - name: Publish to GitHub Packages
+        env:
+          POETRY_HTTP_BASIC_GITHUB_USERNAME: ${{ secrets.GITHUB_ACTOR }}
+          POETRY_HTTP_BASIC_GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          poetry config repositories.github https://pip.pkg.github.com/${{ github.repository_owner }}
+          poetry publish -r github --username ${{ secrets.GITHUB_ACTOR }} --password ${{ secrets.GITHUB_TOKEN }}
+
