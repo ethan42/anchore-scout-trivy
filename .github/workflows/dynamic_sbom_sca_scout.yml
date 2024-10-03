@@ -1,7 +1,6 @@
-## Scan a docker image -> get an SBOM/SCA report based on
-## what is actually referenced at runtime.
+## Scan a docker image -> get a SARIF/SBOM report
 
-name: Dynamic SBOM/SCA Scout + Mayhem
+name: Mayhem Dynamic SBOM/SCA + Scout
 
 on:
   workflow_dispatch:

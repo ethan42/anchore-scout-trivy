@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "anchore-scout-trivy"
+version = "0.1.0"
+description = ""
+authors = ["Thanassis Avgerinos <thanassis.avgerinos@gmail.com>"]
+readme = "README.md"
+packages = [{include = "anchore_scout_trivy"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+matplotlib-venn = "^1.1.1"
+
+[tool.poetry.scripts]
+main = "anchore_scout_trivy:main"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
