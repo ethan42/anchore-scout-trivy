@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "anchore_scout_trivy"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 matplotlib-venn = "^1.1.1"
 
 [tool.poetry.scripts]
