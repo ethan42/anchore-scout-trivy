@@ -16,15 +16,8 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.8'
-
-      - name: Install Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          echo "::add-path::$(python3 -m site --user-base)/bin"
+      - name: Ensure poetry is installed
+        run: apt install -fy python3-poetry
 
       - name: Install dependencies
         run: poetry install
